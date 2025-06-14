@@ -21,9 +21,38 @@ const CustomTooltip = ({ active, payload, label, darkMode }) => {
 
 export default function MonthlySalesBarChart({ data, darkMode }) {
   return (
-    <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-4 rounded-lg shadow`}>
+    <div className={`
+      ${darkMode ? 'bg-gray-800' : 'bg-white'} 
+      p-4 rounded-lg shadow
+      transition-colors duration-300 ease-in-out
+      animate-fade-in
+    `}>
+      <style>
+        {`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes scaleIn {
+            from { transform: scale(0.95); }
+            to { transform: scale(1); }
+          }
+          .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+          }
+          .animate-scale-in {
+            animation: scaleIn 0.5s ease-out forwards;
+          }
+          .bar-hover {
+            transition: opacity 0.3s ease-in-out;
+          }
+          .bar-hover:hover {
+            opacity: 0.8;
+          }
+        `}
+      </style>
       <h3 className="text-lg font-semibold mb-2">Monthly Sales</h3>
-      <div className="h-[400px]">
+      <div className="h-[400px] animate-scale-in">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
             <CartesianGrid 
@@ -44,6 +73,7 @@ export default function MonthlySalesBarChart({ data, darkMode }) {
               dataKey="sales" 
               fill={darkMode ? '#818cf8' : '#8884d8'}
               barSize={30}
+              className="bar-hover"
             />
           </BarChart>
         </ResponsiveContainer>

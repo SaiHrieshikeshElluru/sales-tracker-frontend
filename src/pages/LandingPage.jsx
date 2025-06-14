@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Form, useNavigate } from 'react-router-dom';
-import photo from "../../public/photo.png"
+import { useNavigate } from 'react-router-dom';
+import photo from "/photo.png";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -32,6 +32,24 @@ export default function LandingPage() {
 
   return (
     <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-gradient-to-br from-blue-50 to-white text-gray-900'}`}>
+      <style>
+        {`
+          @keyframes slideInFromLeft {
+            0% {
+              transform: translateX(-100%);
+              opacity: 0;
+            }
+            100% {
+              transform: translateX(0);
+              opacity: 1;
+            }
+          }
+          .animate-slide-in {
+            animation: slideInFromLeft 0.8s ease-out forwards;
+          }
+        `}
+      </style>
+
       {/* Loading Overlay */}
       {isLoading && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -120,8 +138,8 @@ export default function LandingPage() {
             </button>
           </div>
           
-          {/* Right side image */}
-          <div className="flex-1 flex justify-center">
+          {/* Right side image with CSS animation */}
+          <div className="flex-1 flex justify-center animate-slide-in">
             <div className="relative w-full max-w-md">
               <div className={`absolute inset-0 ${
                 darkMode ? 'bg-blue-800/20' : 'bg-blue-100/40'
