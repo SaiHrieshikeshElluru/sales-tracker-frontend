@@ -1,6 +1,7 @@
 # Sales Tracker Frontend
 
 A modern, responsive web application for tracking sales data, managing products, and analyzing business performance with real-time insights and comprehensive analytics.
+[🌐 Live Demo (Global Access)](https://sales-tracker-frontend-theta.vercel.app/)
 
 ## 🚀 Features
 
